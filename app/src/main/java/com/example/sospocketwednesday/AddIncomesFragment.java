@@ -3,6 +3,7 @@ package com.example.sospocketwednesday;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,9 +41,16 @@ public class AddIncomesFragment extends Fragment {
                 String name = editName.getText().toString();
                 String price = editPrice.getText().toString();
 
+                String mt = (DateFormat.format("MM", new java.util.Date()).toString());
+                int myTime = Integer.parseInt(mt);
+
                 Item item = new Item();
                 item.setName(name);
                 item.setPrice(price);
+                item.setDate(myTime);
+
+
+
 
                 MainActivity.incomesDatabase.itemDao().addItem(item);
 

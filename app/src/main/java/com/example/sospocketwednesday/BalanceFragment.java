@@ -8,6 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -19,6 +27,9 @@ public class BalanceFragment extends Fragment {
     private TextView textTotal;
     private List<Item> items;
     private int total;
+    private BarChart barChart;
+    private int price;
+    private int exps;
 
     public BalanceFragment() {
         // Required empty public constructor
@@ -31,20 +42,47 @@ public class BalanceFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_balance, container, false);
 
+        barChart = view.findViewById(R.id.bar_chart);
+
         textTotal = view.findViewById(R.id.balance_total);
 
         items = MainActivity.incomesDatabase.itemDao().getAllItems();
         total = 0;
 
+        price = 0;
+
+        List<BarEntry> barEntries = new ArrayList<>();
+
         for (Item item : items){
             total += Integer.parseInt(item.getPrice());
         }
+        barEntries.add(new BarEntry(3, total));
 
         items = MainActivity.expensesDatabase.itemDao().getAllItems();
 
+        exps = 0;
         for (Item item : items){
-            total -= Integer.parseInt(item.getPrice());
+            price = Integer.parseInt(item.getPrice());
+            exps += price;
+            total -= price;
         }
+        barEntries.add(new BarEntry(1, exps));
+
+        BarDataSet barDataSet = new BarDataSet(barEntries, "Сводка");
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        BarData barData = new BarData(barDataSet);
+//        barData.setBarWidth(0.9f);
+
+        barChart.setVisibility(View.VISIBLE);
+        barChart.animateY(500);
+        barChart.setData(barData);
+        barChart.setFitBars(true);
+
+        Description description = new Description();
+        description.setText("Расходы и Доходы");
+        barChart.setDescription(description);
+        barChart.invalidate();
 
         textTotal.setText(Integer.toString(total));
 

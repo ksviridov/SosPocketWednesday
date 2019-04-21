@@ -31,6 +31,9 @@ public class AddIncomesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_incomes, container, false);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Добавить Доходы");
+
         editName = view.findViewById(R.id.name_incomes);
         editPrice = view.findViewById(R.id.price_incomes);
         button = view.findViewById(R.id.bn_add_incomes);

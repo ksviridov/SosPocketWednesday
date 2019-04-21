@@ -27,7 +27,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ItemHolder> {
     public void onBindViewHolder(@NonNull ItemAdapter.ItemHolder itemHolder, int i) {
         Item currentItem = items.get(i);
         itemHolder.textViewTitle.setText(currentItem.getName());
-        itemHolder.textViewPrice.setText(currentItem.getPrice());
+        itemHolder.textViewPrice.setText(currentItem.getPrice() + " \u20BD");
 
     }
 

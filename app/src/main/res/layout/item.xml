@@ -30,7 +30,7 @@
         android:padding="16dp"
         android:gravity="center"
         android:textColor="@color/white"
-        tools:text="35P"
+        tools:text="35"
         />
 
 </LinearLayout>

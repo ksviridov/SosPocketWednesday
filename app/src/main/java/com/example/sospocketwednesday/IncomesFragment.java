@@ -36,6 +36,9 @@ public class IncomesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_incomes, container, false);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Доходы");
+
         fab = view.findViewById(R.id.fab_incomes);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

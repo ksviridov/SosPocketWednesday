@@ -32,6 +32,9 @@ public class AddExpensesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_expenses, container, false);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Добавить Расходы");
+
         editName = view.findViewById(R.id.name_expenses);
         editPrice = view.findViewById(R.id.price_expenses);
         button = view.findViewById(R.id.bn_add_expenses);

@@ -48,6 +48,9 @@ public class BalanceFragment extends Fragment {
 
         textTotal = view.findViewById(R.id.balance_total);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Баланс");
+
         items = MainActivity.incomesDatabase.itemDao().getAllItems();
         total = 0;
 
@@ -65,7 +68,7 @@ public class BalanceFragment extends Fragment {
             }
             total += Integer.parseInt(item.getPrice());
         }
-        barEntries.add(new BarEntry(3, incs));
+        barEntries.add(new BarEntry(3, new float[]{0, incs}));
 
         items = MainActivity.expensesDatabase.itemDao().getAllItems();
 
@@ -77,9 +80,7 @@ public class BalanceFragment extends Fragment {
             }
             total -= price;
         }
-        barEntries.add(new BarEntry(1, exps));
-
-        barEntries.add(new BarEntry(5, 3));
+        barEntries.add(new BarEntry(1, new float[]{0, exps}));
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Сводка");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
@@ -98,7 +99,7 @@ public class BalanceFragment extends Fragment {
         barChart.setDescription(description);
         barChart.invalidate();
 
-        textTotal.setText(Integer.toString(total) + " " + mytime);
+        textTotal.setText(Integer.toString(total) + " за " + mytime);
 
         return view;
     }

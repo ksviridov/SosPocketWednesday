@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/products_popup"
+        android:title="Продукты"/>
+    <item android:id="@+id/technique_popup"
+        android:title="Техника"/>
+    <item android:id="@+id/entertainment_popup"
+        android:title="Развлечения"/>
+    <item android:id="@+id/cloth_popup"
+        android:title="Одежда"/>
+</menu>

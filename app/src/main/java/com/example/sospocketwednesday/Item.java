@@ -19,6 +19,9 @@ public class Item {
     @ColumnInfo(name = "item_date")
     int date;
 
+    @ColumnInfo(name = "item_type")
+    String type;
+
     public int getId() {
         return id;
     }
@@ -49,5 +52,13 @@ public class Item {
 
     public void setDate(int date) {
         this.date = date;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

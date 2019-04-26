@@ -7,6 +7,7 @@ import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -32,6 +33,8 @@ public class BalanceFragment extends Fragment {
     private int price;
     private int exps;
     private int incs;
+    private Button expenses;
+    private Button incomes;
 
     public BalanceFragment() {
         // Required empty public constructor
@@ -48,8 +51,20 @@ public class BalanceFragment extends Fragment {
 
         textTotal = view.findViewById(R.id.balance_total);
 
+        expenses = view.findViewById(R.id.rashi);
+        incomes = view.findViewById(R.id.dohi);
+
         ((MainActivity) getActivity())
                 .setActionBarTitle("Баланс");
+
+        expenses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, new PieExpensesFragment(), null)
+                        .addToBackStack(null).commit();
+            }
+        });
 
         items = MainActivity.incomesDatabase.itemDao().getAllItems();
         total = 0;

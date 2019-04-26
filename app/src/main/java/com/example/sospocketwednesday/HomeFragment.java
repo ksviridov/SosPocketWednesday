@@ -27,6 +27,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Навигационное Меню");
+
         bnExpenses = view.findViewById(R.id.bn_expenses_fragment);
         bnIncomes = view.findViewById(R.id.bn_incomes_fragment);
         bnBalance = view.findViewById(R.id.bn_balance_fragment);

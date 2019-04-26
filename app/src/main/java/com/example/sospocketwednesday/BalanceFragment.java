@@ -3,6 +3,7 @@ package com.example.sospocketwednesday;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,7 @@ public class BalanceFragment extends Fragment {
     private BarChart barChart;
     private int price;
     private int exps;
+    private int incs;
 
     public BalanceFragment() {
         // Required empty public constructor
@@ -46,33 +48,46 @@ public class BalanceFragment extends Fragment {
 
         textTotal = view.findViewById(R.id.balance_total);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Баланс");
+
         items = MainActivity.incomesDatabase.itemDao().getAllItems();
         total = 0;
 
         price = 0;
 
+        incs = 0;
+
+        String mytime = (DateFormat.format("MM", new java.util.Date()).toString());
+
         List<BarEntry> barEntries = new ArrayList<>();
 
         for (Item item : items){
+            if (item.getDate() == Integer.parseInt(mytime)){
+                incs += Integer.parseInt(item.getPrice());
+            }
             total += Integer.parseInt(item.getPrice());
         }
-        barEntries.add(new BarEntry(3, total));
+        barEntries.add(new BarEntry(3, new float[]{0, incs}));
 
         items = MainActivity.expensesDatabase.itemDao().getAllItems();
 
         exps = 0;
         for (Item item : items){
             price = Integer.parseInt(item.getPrice());
-            exps += price;
+            if (item.getDate() == Integer.parseInt(mytime)){
+                exps += Integer.parseInt(item.getPrice());
+            }
             total -= price;
         }
-        barEntries.add(new BarEntry(1, exps));
+        barEntries.add(new BarEntry(1, new float[]{0, exps}));
 
         BarDataSet barDataSet = new BarDataSet(barEntries, "Сводка");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         BarData barData = new BarData(barDataSet);
-//        barData.setBarWidth(0.9f);
+        barData.setBarWidth(0.9f);
+
 
         barChart.setVisibility(View.VISIBLE);
         barChart.animateY(500);
@@ -84,7 +99,7 @@ public class BalanceFragment extends Fragment {
         barChart.setDescription(description);
         barChart.invalidate();
 
-        textTotal.setText(Integer.toString(total));
+        textTotal.setText(Integer.toString(total) + " за " + mytime);
 
         return view;
     }

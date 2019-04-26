@@ -33,6 +33,9 @@ public class ExpensesFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_expenses, container, false);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Расходы");
+
         fab = view.findViewById(R.id.fab_expenses);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -16,6 +16,9 @@ public class Item {
     @ColumnInfo(name = "item_price")
     String price;
 
+    @ColumnInfo(name = "item_date")
+    int date;
+
     public int getId() {
         return id;
     }
@@ -38,5 +41,13 @@ public class Item {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public int getDate() {
+        return date;
+    }
+
+    public void setDate(int date) {
+        this.date = date;
     }
 }

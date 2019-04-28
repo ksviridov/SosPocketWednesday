@@ -56,7 +56,7 @@ public class IncomesFragment extends Fragment {
         recyclerView.setHasFixedSize(true);
 
         adapter = new ItemAdapter();
-        adapter.setItems(items);
+        adapter.submitList(items);
         recyclerView.setAdapter(adapter);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
@@ -70,6 +70,7 @@ public class IncomesFragment extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
                 MainActivity.incomesDatabase.itemDao().deleteItem(adapter.getItemAt(viewHolder.getAdapterPosition()));
+                adapter.submitList(MainActivity.incomesDatabase.itemDao().getAllItems());
                 Toast.makeText(getActivity(), "Item deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);

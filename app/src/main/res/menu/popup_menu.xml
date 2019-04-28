@@ -9,4 +9,6 @@
         android:title="Развлечения"/>
     <item android:id="@+id/cloth_popup"
         android:title="Одежда"/>
+    <item android:id="@+id/different_popup"
+        android:title="Разное"/>
 </menu>

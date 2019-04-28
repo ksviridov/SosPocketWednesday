@@ -3,6 +3,7 @@ package com.example.sospocketwednesday;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -58,23 +59,27 @@ public class PieExpensesFragment extends Fragment {
         cloth = 0;
         entertainment = 0;
 
-        for (Item item : items){
-            switch (item.getType()){
-                case "Разное":
-                    raznoe += Integer.parseInt(item.getPrice());
-                    continue;
-                case "Продукты":
-                    products += Integer.parseInt(item.getPrice());
-                    continue;
-                case "Техника":
-                    technique += Integer.parseInt(item.getPrice());
-                    continue;
-                case "Одежда":
-                    cloth += Integer.parseInt(item.getPrice());
-                    continue;
-                case "Развлечения":
-                    entertainment += Integer.parseInt(item.getPrice());
-                    continue;
+        String mytime = (DateFormat.format("MM", new java.util.Date()).toString());
+
+        for (Item item : items) {
+            if (item.getDate() == Integer.parseInt(mytime)) {
+                switch (item.getType()) {
+                    case "Разное":
+                        raznoe += Integer.parseInt(item.getPrice());
+                        continue;
+                    case "Продукты":
+                        products += Integer.parseInt(item.getPrice());
+                        continue;
+                    case "Техника":
+                        technique += Integer.parseInt(item.getPrice());
+                        continue;
+                    case "Одежда":
+                        cloth += Integer.parseInt(item.getPrice());
+                        continue;
+                    case "Развлечения":
+                        entertainment += Integer.parseInt(item.getPrice());
+                        continue;
+                }
             }
         }
         if (raznoe > 0){

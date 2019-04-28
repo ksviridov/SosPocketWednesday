@@ -51,6 +51,7 @@ public class AddIncomesFragment extends Fragment {
                 item.setName(name);
                 item.setPrice(price);
                 item.setDate(myTime);
+                item.setType("Разное");
 
 
 

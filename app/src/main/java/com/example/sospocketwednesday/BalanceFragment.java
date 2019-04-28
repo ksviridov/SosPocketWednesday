@@ -114,6 +114,8 @@ public class BalanceFragment extends Fragment {
         barChart.setDescription(description);
         barChart.invalidate();
 
+        mytime = (DateFormat.format("MM", new java.util.Date()).toString());
+
         textTotal.setText(Integer.toString(total) + " за " + mytime);
 
         return view;

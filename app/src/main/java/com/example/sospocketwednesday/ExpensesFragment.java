@@ -65,6 +65,7 @@ public class ExpensesFragment extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
                 MainActivity.expensesDatabase.itemDao().deleteItem(adapter.getItemAt(viewHolder.getAdapterPosition()));
+                adapter.setItems(MainActivity.expensesDatabase.itemDao().getAllItems());
                 Toast.makeText(getActivity(), "Item deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);

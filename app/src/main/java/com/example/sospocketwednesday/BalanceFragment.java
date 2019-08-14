@@ -102,21 +102,25 @@ public class BalanceFragment extends Fragment {
 
         BarData barData = new BarData(barDataSet);
         barData.setBarWidth(0.9f);
+        barData.setValueTextColor(getResources().getColor(R.color.white));
 
 
         barChart.setVisibility(View.VISIBLE);
         barChart.animateY(500);
         barChart.setData(barData);
         barChart.setFitBars(true);
+//        barChart
 
         Description description = new Description();
         description.setText("Расходы и Доходы");
+        description.setTextColor(getResources().getColor(R.color.white));
         barChart.setDescription(description);
+//        barChart.setNoDataTextColor(getResources().getColor(R.color.white));
         barChart.invalidate();
 
         mytime = (DateFormat.format("MM", new java.util.Date()).toString());
 
-        textTotal.setText(Integer.toString(total) + " за " + mytime);
+        textTotal.setText(Integer.toString(total) + " за " + "Май");
 
         return view;
     }

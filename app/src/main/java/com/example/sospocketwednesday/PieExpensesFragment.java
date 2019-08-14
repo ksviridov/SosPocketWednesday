@@ -113,7 +113,7 @@ public class PieExpensesFragment extends Fragment {
         pieChart.setData(pieData);
 
         Description description = new Description();
-        description.setText("HAHAHAHA");
+        description.setText("");
         pieChart.setDescription(description);
 
         pieChart.invalidate();

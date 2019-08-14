@@ -2,8 +2,12 @@ package com.example.sospocketwednesday;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -58,6 +62,34 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, new IncomesFragment(), null)
                         .addToBackStack(null).commit();
+        }
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_menu, menu);
+
+        menu.findItem(R.id.sort).setVisible(false);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.settings:
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, new SettingsFragment(), null)
+                        .addToBackStack(null).commit();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

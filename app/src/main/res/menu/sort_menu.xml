@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/thisMonth_sort"
+        android:title="В этом месяце"/>
+    <item android:id="@+id/prevMonth_sort"
+        android:title="В прошлом месяце"/>
+    <item android:id="@+id/allTime_sort"
+        android:title="За все время"/>
+
+</menu>

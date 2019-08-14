@@ -7,9 +7,16 @@
     <color name="white">#FFFFFF</color>
     <color name="blue">#5668CF</color>
     <color name="dark_blue">#293896</color>
+    <color name="sky">#B2B9DB</color>
+    <color name="hintcolor">#A4A5AA</color>
+
 
     <color name="red_force">#A3202E</color>
     <color name="green">#4CAF50</color>
     <color name="red">#F04437</color>
     <color name="regreen">#3F51B5</color>
+
+    <color name="grey">#494545</color>
+    <color name="greydark">#221F1F</color>
+    <color name="greyblack">#141010</color>
 </resources>

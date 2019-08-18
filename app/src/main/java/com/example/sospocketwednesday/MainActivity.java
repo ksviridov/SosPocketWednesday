@@ -10,8 +10,10 @@ public class MainActivity extends AppCompatActivity {
     public static FragmentManager fragmentManager;
     public static ExpensesDatabase expensesDatabase;
     public static IncomesDatabase incomesDatabase;
-    public static String appTheme;
+    public static String appTheme = "light";
     public static View holderBg;
+    public static int accountNumb = 0;
+    public static String accountNam = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -22,6 +22,9 @@ public class Item {
     @ColumnInfo(name = "item_type")
     String type;
 
+    @ColumnInfo(name = "item_account")
+    int account;
+
     public int getId() {
         return id;
     }
@@ -60,5 +63,13 @@ public class Item {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public int getAccount() {
+        return account;
+    }
+
+    public void setAccount(int account) {
+        this.account = account;
     }
 }

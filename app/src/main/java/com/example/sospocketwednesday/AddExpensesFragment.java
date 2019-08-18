@@ -65,6 +65,7 @@ public class AddExpensesFragment extends Fragment implements PopupMenu.OnMenuIte
                 item.setPrice(price);
                 item.setDate(myTime);
                 item.setType(type);
+                item.setAccount(MainActivity.accountNumb);
 
                 MainActivity.expensesDatabase.itemDao().addItem(item);
 

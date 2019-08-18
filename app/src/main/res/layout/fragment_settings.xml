@@ -3,13 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".SettingsFragment"
     android:orientation="vertical"
     android:padding="24dp">
 
     <android.support.v7.widget.CardView
-        app:cardBackgroundColor="?attr/cardBackgroundColor"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -34,7 +33,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        app:cardBackgroundColor="?attr/cardBackgroundColor"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp">
@@ -72,7 +71,7 @@
     </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.CardView
-        app:cardBackgroundColor="?attr/cardBackgroundColor"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp">

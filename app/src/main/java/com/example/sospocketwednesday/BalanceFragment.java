@@ -27,7 +27,7 @@ import java.util.List;
 public class BalanceFragment extends Fragment {
 
     private TextView textTotal;
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
     private int total;
     private BarChart barChart;
     private int price;
@@ -35,6 +35,7 @@ public class BalanceFragment extends Fragment {
     private int incs;
     private Button expenses;
     private Button incomes;
+    int counta;
 
     public BalanceFragment() {
         // Required empty public constructor
@@ -52,7 +53,7 @@ public class BalanceFragment extends Fragment {
         textTotal = view.findViewById(R.id.balance_total);
 
         expenses = view.findViewById(R.id.rashi);
-        incomes = view.findViewById(R.id.dohi);
+        incomes = view.findViewById(R.id.dohod);
 
         ((MainActivity) getActivity())
                 .setActionBarTitle("Баланс");
@@ -66,7 +67,16 @@ public class BalanceFragment extends Fragment {
             }
         });
 
-        items = MainActivity.incomesDatabase.itemDao().getAllItems();
+        counta = 0;
+//        items = MainActivity.incomesDatabase.itemDao().getAllItems();
+
+        for (Item item1 : MainActivity.incomesDatabase.itemDao().getAllItems()){
+            if (item1.getAccount() == MainActivity.accountNumb){
+                items.add(counta, item1);
+                counta = counta + 1;
+            }
+        }
+
         total = 0;
 
         price = 0;
@@ -85,7 +95,16 @@ public class BalanceFragment extends Fragment {
         }
         barEntries.add(new BarEntry(3, new float[]{0, incs}));
 
-        items = MainActivity.expensesDatabase.itemDao().getAllItems();
+        counta = 0;
+//        items = MainActivity.expensesDatabase.itemDao().getAllItems();
+        items = new ArrayList<>();
+
+        for (Item item1 : MainActivity.expensesDatabase.itemDao().getAllItems()){
+            if (item1.getAccount() == MainActivity.accountNumb){
+                items.add(counta, item1);
+                counta = counta + 1;
+            }
+        }
 
         exps = 0;
         for (Item item : items){

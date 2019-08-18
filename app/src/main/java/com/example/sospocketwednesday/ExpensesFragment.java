@@ -67,7 +67,8 @@ public class ExpensesFragment extends Fragment implements PopupMenu.OnMenuItemCl
         recyclerView.setHasFixedSize(true);
 
         adapter = new ItemAdapter();
-        adapter.submitList(MainActivity.expensesDatabase.itemDao().getAllItems());
+        allTimeSort();
+//        adapter.submitList(MainActivity.expensesDatabase.itemDao().getAllItems());
         recyclerView.setAdapter(adapter);
 
         new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
@@ -81,7 +82,8 @@ public class ExpensesFragment extends Fragment implements PopupMenu.OnMenuItemCl
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
 
                 MainActivity.expensesDatabase.itemDao().deleteItem(adapter.getItemAt(viewHolder.getAdapterPosition()));
-                adapter.submitList(MainActivity.expensesDatabase.itemDao().getAllItems());
+                allTimeSort();
+//                adapter.submitList(MainActivity.expensesDatabase.itemDao().getAllItems());
                 Toast.makeText(getActivity(), "Item deleted", Toast.LENGTH_SHORT).show();
             }
         }).attachToRecyclerView(recyclerView);
@@ -176,7 +178,7 @@ public class ExpensesFragment extends Fragment implements PopupMenu.OnMenuItemCl
 
                 String mytime = (DateFormat.format("MM", new java.util.Date()).toString());
                 for (Item item1 : MainActivity.expensesDatabase.itemDao().getAllItems()){
-                    if (item1.getDate() == Integer.parseInt(mytime)){
+                    if ((item1.getDate() == Integer.parseInt(mytime)) && (item1.getAccount() == MainActivity.accountNumb)){
                         lastMonth.add(counta, item1);
                         counta = counta + 1;
                     }
@@ -192,7 +194,7 @@ public class ExpensesFragment extends Fragment implements PopupMenu.OnMenuItemCl
 
                 String mytime1 = (DateFormat.format("MM", new java.util.Date()).toString());
                 for (Item item1 : MainActivity.expensesDatabase.itemDao().getAllItems()){
-                    if (item1.getDate() == (Integer.parseInt(mytime1) - 1)){
+                    if ((item1.getDate() == (Integer.parseInt(mytime1) - 1)) && (item1.getAccount() == MainActivity.accountNumb)){
                         lastMonth1.add(counta1, item1);
                         counta1 = counta1 + 1;
                     }
@@ -203,12 +205,37 @@ public class ExpensesFragment extends Fragment implements PopupMenu.OnMenuItemCl
                 Toast.makeText(getActivity(), "Отсортировано", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.allTime_sort:
-                adapter.submitList(MainActivity.expensesDatabase.itemDao().getAllItems());
+                allTimeSort();
+//                List<Item> allTime = new ArrayList<>();
+//                int counta2 = 0;
+//
+//                for (Item item1 : MainActivity.expensesDatabase.itemDao().getAllItems()){
+//                    if (item1.getAccount() == MainActivity.accountNumb){
+//                        allTime.add(counta2, item1);
+//                        counta2 = counta2 + 1;
+//                    }
+//                }
+//
+//                adapter.submitList(allTime);
 
                 Toast.makeText(getActivity(), "Отсортировано", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return false;
         }
+    }
+
+    private void allTimeSort(){
+        List<Item> allTime = new ArrayList<>();
+        int counta2 = 0;
+
+        for (Item item1 : MainActivity.expensesDatabase.itemDao().getAllItems()){
+            if (item1.getAccount() == MainActivity.accountNumb){
+                allTime.add(counta2, item1);
+                counta2 = counta2 + 1;
+            }
+        }
+
+        adapter.submitList(allTime);
     }
 }

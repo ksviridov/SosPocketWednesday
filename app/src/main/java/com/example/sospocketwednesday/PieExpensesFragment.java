@@ -25,13 +25,14 @@ import java.util.List;
 public class PieExpensesFragment extends Fragment {
 
 
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
     private PieChart pieChart;
     private int raznoe;
     private int products;
     private int technique;
     private int cloth;
     private int entertainment;
+    private int counta;
 
 
     public PieExpensesFragment() {
@@ -52,7 +53,16 @@ public class PieExpensesFragment extends Fragment {
 
         List<PieEntry> pieEntries = new ArrayList<>();
 
-        items = MainActivity.expensesDatabase.itemDao().getAllItems();
+//        items = MainActivity.expensesDatabase.itemDao().getAllItems();
+        counta = 0;
+
+        for (Item item1 : MainActivity.expensesDatabase.itemDao().getAllItems()){
+            if (item1.getAccount() == MainActivity.accountNumb){
+                items.add(counta, item1);
+                counta = counta + 1;
+            }
+        }
+
         raznoe = 0;
         products = 0;
         technique = 0;

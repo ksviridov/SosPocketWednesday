@@ -10,7 +10,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 
 /**
@@ -19,6 +24,10 @@ import android.widget.Button;
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private Button bnExpenses, bnIncomes, bnBalance;
+    private ListView listView;
+    private String[] accNumbers = {"1", "2", "3", "4", "5"};
+    private String[] accNames = {"Основной", "Кредитка", "Дебетовая", "Qiwi", "Заначка"};
+    private TextView selectedAccount;
 
     public HomeFragment() {
         // Required empty public constructor
@@ -41,6 +50,28 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         bnExpenses.setOnClickListener(this);
         bnBalance.setOnClickListener(this);
         bnIncomes.setOnClickListener(this);
+
+        listView = view.findViewById(R.id.listView);
+
+        CustomAdapter customAdapter = new CustomAdapter();
+        listView.setAdapter(customAdapter);
+
+        if (MainActivity.accountNam == ""){
+            MainActivity.accountNam = accNames[0];
+        }
+        selectedAccount = view.findViewById(R.id.selectedAcc);
+        selectedAccount.setText(MainActivity.accountNam);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                MainActivity.accountNumb = position;
+                MainActivity.accountNam = accNames[position];
+                selectedAccount.setText(MainActivity.accountNam);
+
+                Toast.makeText(getActivity(), Integer.toString(position), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
@@ -90,6 +121,36 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private class CustomAdapter extends BaseAdapter {
+        @Override
+        public int getCount() {
+            return accNames.length;
+        }
+
+        @Override
+        public Object getItem(int position) {
+            return null;
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return 0;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view1 = getLayoutInflater().inflate(R.layout.row, null);
+
+            TextView name = view1.findViewById(R.id.accName);
+            TextView number = view1.findViewById(R.id.accNumber);
+
+            name.setText(accNames[position]);
+            number.setText(Integer.toString(position +1));
+
+            return view1;
         }
     }
 }

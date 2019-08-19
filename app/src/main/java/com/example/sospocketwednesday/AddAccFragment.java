@@ -31,6 +31,9 @@ public class AddAccFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_acc, container, false);
 
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Добавить счёт");
+
         addEditAcc = view.findViewById(R.id.addEditAcc);
 
         editAcc = view.findViewById(R.id.editAccName);

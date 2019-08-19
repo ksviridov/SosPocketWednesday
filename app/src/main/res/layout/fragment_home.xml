@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".HomeFragment">
+    tools:context=".HomeFragment"
+    >
 
 
     <Button
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:padding="25dp"
-        android:background="@color/red"
+        android:background="@drawable/custom_button_red"
         android:text="Расходы"
         android:textAlignment="center"
         android:textSize="40sp"
@@ -29,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:padding="25dp"
-        android:background="@color/green"
+        android:background="@drawable/custom_button_green"
         android:text="Доходы"
         android:textAlignment="center"
         android:textSize="40sp"
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="24dp"
         android:padding="25dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/custom_button_blue"
         android:text="Баланс"
         android:textAlignment="center"
         android:textSize="40sp"
@@ -55,29 +56,48 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bn_incomes_fragment" />
 
-    <ListView
-        android:id="@+id/listView"
-        android:layout_width="413dp"
-        android:layout_height="189dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginBottom="8dp"
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="388dp"
+        android:layout_height="178dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/frame"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectedAcc">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-    </ListView>
+        <ListView
+            android:id="@+id/listView"
+            android:layout_width="375dp"
+            android:layout_height="170dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.698">
+
+        </ListView>
+
+    </android.support.constraint.ConstraintLayout>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="400dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
         android:text="Выбран:"
         android:textColor="@color/colorAccent"
         android:textSize="36sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/bn_balance_fragment" />
 
     <TextView
         android:id="@+id/selectedAcc"
@@ -96,18 +116,19 @@
 
     <Button
         android:id="@+id/addAccBn"
-        android:layout_width="48dp"
-        android:layout_height="42dp"
+        android:layout_width="64dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:background="@drawable/custom_button_red"
+        android:padding="1dp"
         android:text="+"
-        android:textColor="@color/colorAccent"
-        android:textSize="14sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toEndOf="@+id/selectedAcc"
         app:layout_constraintTop_toBottomOf="@+id/bn_balance_fragment" />
 </android.support.constraint.ConstraintLayout>

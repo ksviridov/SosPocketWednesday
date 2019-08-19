@@ -8,7 +8,6 @@
     android:padding="24dp">
 
     <android.support.v7.widget.CardView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -16,18 +15,20 @@
             android:layout_height="match_parent"
             android:padding="10dp"
             android:orientation="vertical">
-            <TextView
-                android:textColor="?attr/textColor"
-                android:textStyle="bold"
-                android:text="Card Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="Информация"
                 android:textColor="?attr/textColor"
-                android:text="Приложение кошелек. Создано для проекта по ВВИД"
-                android:layout_marginTop="8dp"/>
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Приложение кошелек. Создано для проекта по ВВИД."
+                android:textColor="?attr/textColor" />
         </LinearLayout>
 
     </android.support.v7.widget.CardView>
@@ -36,39 +37,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textColor="?attr/textColor"
-                android:text="Некоторые компоненты"/>
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Radio Button"
-                android:layout_marginTop="5dp"
-                android:buttonTint="?attr/tintColor"/>
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="checkBox"
-                android:buttonTint="?attr/tintColor"
-                android:textColor="?attr/textColor"/>
-
-            <Button
-                android:id="@+id/themeBtn"
-                android:layout_width="73dp"
-                android:layout_height="wrap_content"
-                android:background="?attr/buttonColor"
-                android:text="Button"
-                android:textColor="?attr/textColor" />
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+        android:layout_marginTop="8dp"/>
 
     <android.support.v7.widget.CardView
 
@@ -86,13 +55,14 @@
                 android:textStyle="bold"
                 android:textColor="?attr/textColor"
                 android:text="Врубить Темную Тему"/>
+
             <Switch
                 android:id="@+id/mySwitch"
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="TEMNAYA TEMA"
-                android:textColor="?attr/textColor"/>
+                android:layout_marginTop="8dp"
+                android:text="Темная тема"
+                android:textColor="?attr/textColor" />
         </LinearLayout>
     </android.support.v7.widget.CardView>
 

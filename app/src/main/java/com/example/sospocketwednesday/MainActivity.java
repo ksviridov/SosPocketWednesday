@@ -22,6 +22,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 //        appTheme = "Black";
+//        setSupportActionBar();
+//        Toolbar toolbar = findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
 
         holderBg = findViewById(R.id.holderBg);
         holderBg.setBackgroundResource(R.color.sky);

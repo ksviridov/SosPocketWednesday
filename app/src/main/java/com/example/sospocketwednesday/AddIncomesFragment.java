@@ -62,7 +62,7 @@ public class AddIncomesFragment extends Fragment {
                 editName.setText("");
                 editPrice.setText("");
 
-                Toast.makeText(getActivity(), "Item Saved Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Добавлено", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -139,7 +139,46 @@ public class BalanceFragment extends Fragment {
 
         mytime = (DateFormat.format("MM", new java.util.Date()).toString());
 
-        textTotal.setText(Integer.toString(total) + " за " + "Май");
+        String month = "";
+        switch (Integer.parseInt(mytime)){
+            case 1:
+                month = "Январь";
+                break;
+            case 2:
+                month = "Февраль";
+                break;
+            case 3:
+                month = "Март";
+                break;
+            case 4:
+                month = "Апрель";
+                break;
+            case 5:
+                month = "Мая";
+                break;
+            case 6:
+                month = "Июнь";
+                break;
+            case 7:
+                month = "Июль";
+                break;
+            case 8:
+                month = "Август";
+                break;
+            case 9:
+                month = "Сентябрь";
+                break;
+            case 10:
+                month = "Октябрь";
+                break;
+            case 11:
+                month = "Ноябрь";
+                break;
+            case 12:
+                month = "Декабрь";
+        }
+
+        textTotal.setText(Integer.toString(total) + " за " + month);
 
         return view;
     }

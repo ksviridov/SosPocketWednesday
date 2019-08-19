@@ -51,7 +51,7 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:background="@color/regreen"
+        android:background="@drawable/custom_button_blue"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

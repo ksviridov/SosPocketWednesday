@@ -72,7 +72,7 @@ public class AddExpensesFragment extends Fragment implements PopupMenu.OnMenuIte
                 editName.setText("");
                 editPrice.setText("");
 
-                Toast.makeText(getActivity(), "Item Added Successfully", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Добавлено", Toast.LENGTH_SHORT).show();
             }
         });
 

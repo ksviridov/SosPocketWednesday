@@ -27,4 +27,8 @@
         <item name="buttonColor">#5998D1</item>
     </style>
 
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/regular_font</item>
+    </style>
+
 </resources>

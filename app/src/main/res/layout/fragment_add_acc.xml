@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AddAccFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
@@ -43,12 +42,12 @@
 
     <Button
         android:id="@+id/addEditAcc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="126dp"
+        android:layout_height="58dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/custom_button_blue"
         android:text="Добавить"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

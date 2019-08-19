@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 /**
@@ -42,6 +43,9 @@ public class AddAccFragment extends Fragment {
                 AccItem item = new AccItem();
                 item.setName(name);
                 MainActivity.accountsDatabase.accountDao().addItem(item);
+                editAcc.setText("");
+
+                Toast.makeText(getActivity(), "Добавлено", Toast.LENGTH_SHORT).show();
             }
         });
         return view;

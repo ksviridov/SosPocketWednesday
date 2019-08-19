@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Приложение кошелек. Создано для проекта по ВВИД."
+                android:text="Приложение кошелек. Создано для проекта по ВВИД. ЮФУ ИКТИБ г.Таганрог."
                 android:textColor="?attr/textColor" />
         </LinearLayout>
 
@@ -54,14 +54,14 @@
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
                 android:textColor="?attr/textColor"
-                android:text="Врубить Темную Тему"/>
+                android:text="Включить Тёмную Тему"/>
 
             <Switch
                 android:id="@+id/mySwitch"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Темная тема"
+                android:text="Тёмная тема"
                 android:textColor="?attr/textColor" />
         </LinearLayout>
     </android.support.v7.widget.CardView>

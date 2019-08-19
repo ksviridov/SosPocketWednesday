@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
     public static FragmentManager fragmentManager;
     public static ExpensesDatabase expensesDatabase;
     public static IncomesDatabase incomesDatabase;
+    public static AccountsDatabase accountsDatabase;
     public static String appTheme = "light";
     public static View holderBg;
     public static int accountNumb = 0;
@@ -35,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
                 .allowMainThreadQueries().build();
 
         incomesDatabase = Room.databaseBuilder(getApplicationContext(), IncomesDatabase.class, "expenses_database")
+                .allowMainThreadQueries().build();
+
+        accountsDatabase = Room.databaseBuilder(getApplicationContext(), AccountsDatabase.class, "accounts_database")
                 .allowMainThreadQueries().build();
 
         fragmentManager = getSupportFragmentManager();

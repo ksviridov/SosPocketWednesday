@@ -1,9 +1,11 @@
 package com.example.sospocketwednesday;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +17,8 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.List;
 
 
 /**
@@ -23,10 +26,11 @@ import android.widget.Toast;
  */
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
-    private Button bnExpenses, bnIncomes, bnBalance;
+    private Button bnExpenses, bnIncomes, bnBalance, addAccBn;
     private ListView listView;
-    private String[] accNumbers = {"1", "2", "3", "4", "5"};
-    private String[] accNames = {"Основной", "Кредитка", "Дебетовая", "Qiwi", "Заначка"};
+//    private String[] accNumbers = {"1", "2", "3", "4", "5"};
+//    private String[] accNames;
+    private List<AccItem> accItems;
     private TextView selectedAccount;
 
     public HomeFragment() {
@@ -46,18 +50,24 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         bnExpenses = view.findViewById(R.id.bn_expenses_fragment);
         bnIncomes = view.findViewById(R.id.bn_incomes_fragment);
         bnBalance = view.findViewById(R.id.bn_balance_fragment);
+        addAccBn = view.findViewById(R.id.addAccBn);
 
         bnExpenses.setOnClickListener(this);
         bnBalance.setOnClickListener(this);
         bnIncomes.setOnClickListener(this);
+        addAccBn.setOnClickListener(this);
+
 
         listView = view.findViewById(R.id.listView);
 
-        CustomAdapter customAdapter = new CustomAdapter();
+        accItems = MainActivity.accountsDatabase.accountDao().getAllItems();
+
+        final CustomAdapter customAdapter = new CustomAdapter();
         listView.setAdapter(customAdapter);
 
-        if (MainActivity.accountNam == ""){
-            MainActivity.accountNam = accNames[0];
+        if ((MainActivity.accountNam == "") && (accItems.size() > 0)){
+//            MainActivity.accountNam = accNames[0];
+            MainActivity.accountNam = accItems.get(0).getName();
         }
         selectedAccount = view.findViewById(R.id.selectedAcc);
         selectedAccount.setText(MainActivity.accountNam);
@@ -65,13 +75,37 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                MainActivity.accountNumb = position;
-                MainActivity.accountNam = accNames[position];
+                MainActivity.accountNumb = accItems.get(accItems.size() - position - 1).getId();
+//                MainActivity.accountNam = accNames[position];
+                MainActivity.accountNam = accItems.get(accItems.size() - position - 1).getName();
                 selectedAccount.setText(MainActivity.accountNam);
 
-                Toast.makeText(getActivity(), Integer.toString(position), Toast.LENGTH_SHORT).show();
+//                listView.setSelection(position);
+
+//                Toast.makeText(getActivity(), Integer.toString(position), Toast.LENGTH_SHORT).show();
             }
         });
+
+        listView.setOnItemLongClickListener(
+                new AdapterView.OnItemLongClickListener() {
+                    @Override
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                        new AlertDialog.Builder(getActivity()).setIcon(R.drawable.ic_close_red_24dp)
+                                .setTitle("Удаление счёта").setMessage("Вы хотите удалить счёт?")
+                                .setPositiveButton("Да", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        MainActivity.accountsDatabase.accountDao().deleteItem(accItems.get(accItems.size() - position - 1));
+                                        customAdapter.notifyDataSetChanged();
+                                        listView.setAdapter(customAdapter);
+                                    }
+                                }).setNegativeButton("Нет", null).show();
+
+                        return true;
+                    }
+                }
+        );
 
         return view;
     }
@@ -92,6 +126,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.bn_incomes_fragment:
                 MainActivity.fragmentManager.beginTransaction()
                         .replace(R.id.fragment_container, new IncomesFragment(), null)
+                        .addToBackStack(null).commit();
+                break;
+            case R.id.addAccBn:
+                MainActivity.fragmentManager.beginTransaction()
+                        .replace(R.id.fragment_container, new AddAccFragment(), null)
                         .addToBackStack(null).commit();
         }
     }
@@ -127,7 +166,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     private class CustomAdapter extends BaseAdapter {
         @Override
         public int getCount() {
-            return accNames.length;
+//            return accNames.length;
+            return MainActivity.accountsDatabase.accountDao().getAllItems().size();
         }
 
         @Override
@@ -147,7 +187,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             TextView name = view1.findViewById(R.id.accName);
             TextView number = view1.findViewById(R.id.accNumber);
 
-            name.setText(accNames[position]);
+//            name.setText(accNames[position]);
+            name.setText(accItems.get(accItems.size() - position - 1).getName());
             number.setText(Integer.toString(position +1));
 
             return view1;

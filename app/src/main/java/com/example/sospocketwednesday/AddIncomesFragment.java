@@ -3,6 +3,8 @@ package com.example.sospocketwednesday;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,12 @@ public class AddIncomesFragment extends Fragment {
         editPrice = view.findViewById(R.id.price_incomes);
         button = view.findViewById(R.id.bn_add_incomes);
 
+        button.setEnabled(false);
+
+        editName.addTextChangedListener(itemTextWatcher);
+
+        editPrice.addTextChangedListener(itemTextWatcher);
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,5 +76,26 @@ public class AddIncomesFragment extends Fragment {
 
         return view;
     }
+
+    private TextWatcher itemTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String name = editName.getText().toString().trim();
+            String price = editPrice.getText().toString().trim();
+
+            button.setEnabled(!name.isEmpty() && !price.isEmpty());
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
 }

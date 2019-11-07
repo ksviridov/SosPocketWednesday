@@ -68,6 +68,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         if ((MainActivity.accountNam == "") && (accItems.size() > 0)){
 //            MainActivity.accountNam = accNames[0];
             MainActivity.accountNam = accItems.get(0).getName();
+            MainActivity.accountNumb = accItems.get(0).getId();
         }
         selectedAccount = view.findViewById(R.id.selectedAcc);
         selectedAccount.setText(MainActivity.accountNam);

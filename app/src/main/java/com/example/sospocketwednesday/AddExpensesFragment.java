@@ -3,6 +3,8 @@ package com.example.sospocketwednesday;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -50,6 +52,15 @@ public class AddExpensesFragment extends Fragment implements PopupMenu.OnMenuIte
             }
         });
 
+        button.setEnabled(false);
+
+        editName.addTextChangedListener(itemTextWatcher);
+
+
+
+        editPrice.addTextChangedListener(itemTextWatcher);
+
+
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -78,6 +89,29 @@ public class AddExpensesFragment extends Fragment implements PopupMenu.OnMenuIte
 
         return view;
     }
+
+    private TextWatcher itemTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String name = editName.getText().toString().trim();
+            String price = editPrice.getText().toString().trim();
+
+            button.setEnabled(!name.isEmpty() && !price.isEmpty());
+
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
+
 
     public void showPopup(View view) {
         PopupMenu popup = new PopupMenu(getActivity(), view);
@@ -108,5 +142,7 @@ public class AddExpensesFragment extends Fragment implements PopupMenu.OnMenuIte
                 return false;
         }
     }
+
+
 
 }
